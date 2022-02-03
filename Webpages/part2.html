@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F21DV Lab1 Part 2</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body>
+    <p>First paragraph</p>
+    <p>Second paragraph</p>
+
+    <script>
+        // Ex. 1: Checking D3 Version
+        console.log('d3.version:', d3.version);
+        
+        // Ex. 2: Change style properties of paragraph
+        d3.select("p").style("color", "red").style("font-size", "50px").style("line-height", "5")
+        .style("font-family", "Helvetica").text("Changed paragraph content");
+
+        // Ex. 3: 10 divs with counts and two colors.
+        // Begin a for loop which runs 10 times
+        for (let i = 1; i < 11; i++){
+            // Append new div to body. Change its text to counter i's value.
+            // Use anonymous function to determine text color.
+            d3.select('body').append('div').text(i).style('color', function(){
+                // if text/counter value is less than 5, use red color
+                if (i <= 5) {
+                    return "red";
+                } else {
+                    // Otherwise use green color
+                    return "green"
+                }
+            });
+        }
+
+        // Ex. 4: Change first div's text and color.
+        d3.select('div').text('start').style('color', 'purple');
+
+        // Ex. 5: Chain syntax to change text colour
+        d3.select("body").append("div").text("Hello World!").style('color', 'green');
+    </script>
+</body>
+</html>
