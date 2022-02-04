@@ -5,8 +5,42 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>F21DV Lab1 Part 3</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
-    
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+
+    <script>
+        /*
+        // Ex. 6: modify otherdata to include colour
+        // added color to the array of JSON objects
+        let otherdata = [ {name:'test', val:1, color:"red"},
+        {name:'other', val:2, color:"blue"}, {name:'b', val:3, color:"green"} ];
+        let paragraph = d3.select("body").selectAll("div").data(otherdata).text(function (d, i) {
+        console.log("d.name: " + d.name);
+        console.log("d.val: " + d.val);
+        console.log("i: " + i);
+        console.log("this: " + this);
+        return 'color: ' + d.color; // printing color value in text method
+        });
+        */
+        // Note: Commenting out the Ex. 6 code so I can continue with Ex 7 in same file.
+        
+        // Ex. 7: Changing bounds for color
+        let num = [10, 50, 100, 200];
+        let paragraph = d3.select("body").selectAll("div").data(num).text(function (d, i) {
+        return 'cont:' + d; // return value is used to set the 'text' 
+        }).style("color", function(d, i) { 
+            // Check if value is between 50 and 100 inclusive.
+            if ( d >= 50 && d <= 100 ) {
+                return "red"; } 
+            else {
+                return "yellow"; }
+        return 'blue'; 
+        });
+    </script>
 </body>
 </html>
