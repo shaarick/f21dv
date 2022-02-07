@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>F21DV Lab1 Part 6</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <script>
+        //Create SVG element
+        // let svg = d3.select("body").append("svg").attr("width", 400).attr("height", 400)
+        // .style("border", '1px solid green');
+
+        // Ex. 11: Create sqaure using 4 lines.
+        //Create line element inside SVG
+        // svg.append("line").attr("x1", 100) .attr("x2", 100).attr("y1", 50).attr("y2", 150)
+        // .attr("stroke", "blue");
+
+        // svg.append("line").attr("x1", 100) .attr("x2", 200).attr("y1", 150).attr("y2", 150)
+        // .attr("stroke", "red");
+
+        // svg.append("line").attr("x1", 200) .attr("x2", 200).attr("y1", 150).attr("y2", 50)
+        // .attr("stroke", "green");
+
+        // svg.append("line").attr("x1", 100) .attr("x2", 200).attr("y1", 50).attr("y2", 50)
+        // .attr("stroke", "black");
+
+
+        // Ex. 12: Add shapes
+        // async function draw() {
+        //     const data = await d3.csv('part6.csv');
+        //     let svg = d3.select("body").append("svg").attr("width", 400).attr("height", 400)
+        //     .style("border", '1px solid green');
+
+        //     // Append rectangle using all attributes
+        //     svg.append('rect').attr('x', data[0].x).attr('y', data[0].y)
+        //     .attr('width', data[0].width).attr('height', data[0].height).attr('fill', data[0].fill);
+
+        //     // Append circle
+        //     svg.append('circle').attr('cx', data[1].cx).attr('cy', data[1].cy).attr('r',data[1].r);
+
+        //     // Append ellipse
+        //     svg.append('ellipse').attr('cx', data[2].cx).attr('cy', data[2].cy)
+        //     .attr('rx',data[2].rx).attr('ry', data[2].ry).attr('fill', data[2].fill)
+
+        //     // Append line
+        //     svg.append('line').attr('x1', data[3].x).attr('y1', data[3].y)
+        //     .attr('x2', data[3].x2).attr('y2', data[3].y2).attr('stroke', data[3].stroke);
+        // }
+        // draw();
+
+        // Ex. 13: Add shapes from csv
+        async function drawFromCSV() {
+            // Get CSV data
+            const data = await d3.csv('../Data/part6.csv');
+
+            const svg = d3.select('body').selectAll('svg')
+                .data(data)
+                .enter()
+                .append('svg')
+                .attr("width", 400).attr("height", 400).style("border", '1px solid green')
+
+
+            svg.append(function (d) {
+                return document.createElement(d.shape);
+            })
+                .attr('x', function (d) {
+                    return d['x'] != "" ? d['x'] : null;
+                })
+                .attr('y', function (d) {
+                    return d['y'] != "" ? d['y'] : null;
+                })
+                .attr('width', function (d) {
+                    return d['width'] != "" ? d['width'] : null;
+                })
+                .attr('height', function (d) {
+                    return d['height'] != "" ? d['height'] : null;
+                })
+                .attr('cx', function (d) {
+                    return d['cx'] != "" ? d['cx'] : null;
+                })
+                .attr('cy', function (d) {
+                    return d['cy'] != "" ? d['cy'] : null;
+                })
+                .attr('r', function (d) {
+                    return d['r'] != "" ? d['r'] : null;
+                })
+                .attr('rx', function (d) {
+                    return d['rx'] != "" ? d['rx'] : null;
+                })
+                .attr('ry', function (d) {
+                    return d['ry'] != "" ? d['ry'] : null;
+                })
+                .attr('x1', function (d) {
+                    return d['x'] != "" ? d['x'] : null;
+                })
+                .attr('y1', function (d) {
+                    return d['y'] != "" ? d['y'] : null;
+                })
+                .attr('x2', function (d) {
+                    return d['x2'] != "" ? d['x2'] : null;
+                })
+                .attr('y2', function (d) {
+                    return d['y2'] != "" ? d['y2'] : null;
+                })
+                .attr('stroke', function (d) {
+                    return d['stroke'] != "" ? d['stroke'] : null;
+                })
+                .attr('fill', function (d) {
+                    return d['fill'] != "" ? d['fill'] : null;
+                });
+
+        }
+
+        drawFromCSV();
+
+    </script>
+</body>
+
+</html>
