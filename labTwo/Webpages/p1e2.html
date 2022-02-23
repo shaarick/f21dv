@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P1E2</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <style>
+        div {
+            position: relative;
+            background-color: yellow;
+            padding: 20px;
+            display: none;
+        }
+
+        p:hover>div {
+            position: absolute;
+            display: inline-block;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // Dummy Dataset to be used
+        const dataset = [6, 18, 58, 4, 23, 10, 74, 30];
+
+        d3.select('body')
+            .selectAll('span')
+            .data(dataset)
+            .enter()
+            .append('p')
+            .text(function (d) { return d })
+            .append('div')
+            .text(function (d) { return `you are hovering over ${d}` });
+
+    </script>
+</body>
+
+</html>
