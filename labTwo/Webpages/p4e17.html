@@ -39,6 +39,12 @@
         d3.csv('../Data/p4e15.csv').then(function (data) {
             x.domain(data.map(function (d) { return d.year; }));
             y.domain([0, d3.max(data, function (d) { return d.value; })]);
+            // create colours here
+            var colours = d3.scaleLinear()
+                .domain([d3.min(data, function (d) { return d.value; }), d3.max(data, function (d) { return d.value; })])
+                .range(['blue', 'red']);
+
+            // create colours here
             g.append("g")
                 .attr("transform", "translate(0," + height + ")").call(d3.axisBottom(x))
                 .append("text")
@@ -52,10 +58,13 @@
                 return "$" + d;
             }).ticks(10))
                 .append("text").attr("transform", "rotate(-90)").attr("y", 6)
-                .attr("dy", "-5.1em").attr("text-anchor", "end")
-                .attr("stroke", "black").text("Stock Price");
+                .attr("dy", "-5.1em").attr("text-anchor", "end").attr("stroke", "black").text("Stock Price");
 
-            g.selectAll(".bar").data(data).enter().append("rect").attr("class", "bar")
+            g.selectAll(".bar").data(data).enter().append("rect")
+                // add colours here
+                .attr('fill', function (d) {
+                    return colours(d.value);
+                })
                 // Adding event listeners here
                 .on('mouseover', onMouseOver)
                 .on('mouseout', onMouseOut)
@@ -98,8 +107,15 @@
             }
             //mouseout event handler function
             function onMouseOut(d, i) {
-                // use the text label class to remove label on mouseout
-                d3.select(this).attr('class', 'bar');
+                // use the classed method to remove highlight on mouseout
+                d3.select(this)
+                    .classed('highlight', false);
+
+                // on mouseout, change highlight colour back to original
+                d3.select(this)
+                    .attr('fill', function (d) {
+                        return colours(d.value);
+                    })
 
                 d3.select(this)
                     .transition() // adds animation
@@ -111,6 +127,7 @@
                 d3.selectAll('.val').remove()
             }
         });
+
     </script>
 </body>
 
