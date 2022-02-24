@@ -1,12 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>P3E9</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
+
 <body>
-    
+    <script>
+        // Original Div
+        d3.select('body')
+            .append("div")
+            .style('width', '100px')
+            .style('height', '100px')
+            .style('background-color', 'blue')
+            .style('transform', 'scale(1.0)')
+            .transition()
+            .ease(d3.easeBounce)
+            .duration(1000)
+            .style("background-color", "red")
+            .style('transform', 'scale(0.5)')
+
+            d3.select('body')
+            .append("div")
+            .style('width', '100px')
+            .style('height', '100px')
+            .style('background-color', 'blue')
+            .style('transform', 'scale(1.0)')
+            .transition()
+            // New ease transition
+            .ease(d3.easeLinear)
+            .duration(1000)
+            .style("background-color", "red")
+            .style('transform', 'scale(0.5)')
+
+            d3.select('body')
+            .append("div")
+            .style('width', '100px')
+            .style('height', '100px')
+            .style('background-color', 'blue')
+            .style('transform', 'scale(1.0)')
+            .transition()
+            // New ease transition
+            .ease(d3.easeExp)
+            .duration(1000)
+            .style("background-color", "red")
+            .style('transform', 'scale(0.5)')
+
+    </script>
 </body>
+
 </html>
