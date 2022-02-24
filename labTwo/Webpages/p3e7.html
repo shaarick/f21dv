@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3E7</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <script>
+        d3.select('body')
+            // Create div
+            .append("div")
+            .style('width', '100px')
+            .style('height', '100px')
+            // Start with blue colour
+            .style('background-color', 'blue')
+            .transition()
+            // After 1 sec change it to red
+            .duration(1000).style("background-color", "red")
+            // Make div smaller
+            .style('width', '50px')
+            .style('height', '50px')
+            .transition()
+            // After another 2 secs change color to green
+            .duration(2000).style("background-color", "green")
+            // Make div larger
+            .style('width', '200px')
+            .style('height', '200px');
+    </script>
+</body>
+
+</html>
