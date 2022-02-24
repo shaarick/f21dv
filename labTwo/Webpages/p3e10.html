@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3E10</title>
+    <script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+
+<body>
+    <script>
+        // Create SVG element which contains the circle
+        const svg = d3.select('body')
+            .append('svg')
+            .attr("width", 500)
+            .attr("height", 500);
+
+        // Create circle
+        svg.append('circle')
+            .attr('cx', 100)
+            .attr('cy', 100)
+            .attr('r', 50)
+            .attr('stroke', 'black')
+            .attr('fill', '#69a3b4');
+
+        // Add event listener
+
+        d3.selectAll('circle')
+            .on('mouseover', function (event) {
+                d3.select(this)
+                    // Add animation here
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(2000)
+                    // Increase radius on hover
+                    .attr('r', 70)
+            })
+            .on('mouseout', function () {
+                d3.select(this)
+                    .transition()
+                    // Add the bounce animation on mouseout
+                    .ease(d3.easeBounce)
+                    // Restore default radius on mouseout
+                    .attr('r', 50)
+            });
+    </script>
+</body>
+
+</html>
