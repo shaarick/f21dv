@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P3E11</title>
+    <script type='text/javascript' src='https://d3js.org/d3.v7.min.js'></script>
+</head>
+
+<body>
+    <script>
+        // Create SVG element
+        const svg = d3.select('body')
+            .append('svg')
+            .attr("width", 500)
+            .attr("height", 500);
+
+        // Add SVG text to container
+        svg.append('text')
+            .text('Hello World')
+            .attr("y", 190)
+            .attr("x", 150)
+            .attr("font-size", 18)
+            .attr("font-family", "monospace");
+
+        // Add event listeners
+        d3.select('text')
+            .on('mouseover', function (event) {
+                d3.select(this)
+                    // Animate over 2 seconds
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(2000)
+                    .attr("font-size", 36)
+                    .attr('fill', 'red');
+            })
+            .on('mouseout', function () {
+                d3.select(this)
+                    // Animate over 2 seconds
+                    .transition()
+                    .ease(d3.easeLinear)
+                    .duration(2000)
+                    .attr("font-size", 18)
+                    .attr('fill', 'black');
+            });
+    </script>
+</body>
+
+</html>
