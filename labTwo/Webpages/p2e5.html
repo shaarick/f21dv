@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P2E5</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // Create SVG element which contains the circle
+        d3.select('body')
+            .append('svg')
+            .attr("style", "outline: thin solid red;")
+            .attr("width", 500)
+            .attr("height", 500);
+
+        d3.select('svg')
+            // On mouseover
+            .on('mouseover', function (event) {
+                d3.select(this)
+                    // Add SVG text
+                    .append('text')
+                    // With following coordinates
+                    .attr('x', d3.pointer(event)[0])
+                    .attr('y', d3.pointer(event)[1])
+                    .text(function () {
+                        // Hover text
+                        return `Hovering over Point(${d3.pointer(event)[0]}, ${d3.pointer(event)[1]})`
+                    })
+            })
+            .on('mouseout', function () {
+                // On mouseout, remove the previous text to keep SVG container clean
+                d3.select(this)
+                    .select('text').remove()
+            });
+    </script>
+
+</body>
+
+</html>
