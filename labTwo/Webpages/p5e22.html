@@ -39,41 +39,64 @@
         var svg = d3.select('body')
             .append('div').append("svg")
             .attr("width", width + margin.left + margin.right)
-            .attr("height", height + margin.top + margin.bottom).append("g")
-            .attr("transform",
-                "translate(" + margin.left + "," + margin.top + ")");
+            .attr("height", height + margin.top + margin.bottom)
+            .append("g")
+            .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
+        // X axis
+        const x = d3.scaleBand().range([0, width]);
+        const xAxis = d3.axisBottom().scale(x);
+        svg.append("g")
+            .attr("transform", "translate(0," + height + ")")
+            .attr("class", "myXaxis");
+
+        // Create Top X Axis
+        const xTop = d3.axisTop().scale(x);
+        svg.append("g")
+            .attr("transform", "translate(0,0)")
+            .attr("class", "myXTop");
+
+        // Create Bottom Y axis
+        var y = d3.scaleLinear().range([height, 0]);
+        const yAxis = d3.axisLeft().scale(y);
+        svg.append("g")
+            .attr("class", "myYaxis")
+
+        // Creat Right Y axis
+        const yRight = d3.axisRight().scale(y);
+        svg.append("g")
+            .attr("transform", `translate(${width},0)`)
+            .attr("class", "myYRight")
 
         // A function that create / update the plot for a given variable:
         function update(data, num) {
-            // Remove old X axis so they can be updates
-            d3.selectAll('.myXaxis').remove()
+            // Update X Axis domain based on data
+            x.domain(data.map(function (d) { return d.group; })).padding(0.2);
 
-            // X axis
-            var x = d3.scaleBand()
-                .range([0, width])
-                .domain(data.map(function (d) { return d.group; })).padding(0.2);
+            // Update the bottom axis with a transition
+            svg.selectAll(".myXaxis").transition()
+                .duration(3000)
+                .call(xAxis);
 
-            svg.append("g")
-                .attr("transform", "translate(0," + height + ")")
-                .attr("class", "myXaxis").call(d3.axisBottom(x));
+            // Update the top axis with a transition
+            svg.selectAll(".myXTop").transition()
+                .duration(3000)
+                .call(xTop);
 
-            // Adding Top Axis
-            svg.append("g")
-                .attr("transform", "translate(0," + 0 + ")")
-                .attr("class", "myXaxis").call(d3.axisTop(x));
+            // Update y axis domain based on data
+            y.domain([0, d3.max(data, function (d) { return d.value }) + 5]);
 
-            // Add Y axis
-            var y = d3.scaleLinear()
-                .domain([0, 25])
-                .range([height, 0]);
-            svg.append("g")
-                .attr("class", "myYaxis").call(d3.axisLeft(y));
+            // Update left axis with transition
+            svg.selectAll(".myYaxis")
+                .transition()
+                .duration(3000)
+                .call(yAxis);
 
-            // Adding right axis
-            svg.append("g")
-                .attr("transform", "translate(" + 37 + "0 )")
-                .call(d3.axisRight(y));
+            // Update right axis with transition
+            svg.selectAll(".myYRight")
+                .transition()
+                .duration(3000)
+                .call(yRight);
 
             var u = svg.selectAll("rect").data(data)
             u.enter().append("rect")
@@ -98,31 +121,27 @@
 
             // Remove extra bars from the graph using exit method
             u.exit().remove();
-
-            //mouseover event handler function
-            function onMouseOver(d, i) {
-                d3.select('g').append("text")
-                    .attr('class', 'val')
-                    // the following line gets the x coordinate of bar,
-                    // the width of the bar/2 to with a minor adjustment of -10
-                    // to add text at the top and centre of the bar
-                    .attr('x', function () {
-                        return x(i.group) + x.bandwidth() / 2 - 10;
-                    })
-                    // The following function returns the y coordinate of the bar 
-                    // and places the text 15 units above it
-                    .attr('y', function () { return y(i.value) - 5; })
-                    // Value of the text }
-                    .text(function (d) { return i.value; });
-            }
-
-            //mouseout event handler function
-            function onMouseOut(d, i) {
-                d3.selectAll('.val').remove()
-            }
         }
-
-
+        //mouseover event handler function
+        function onMouseOver(d, i) {
+            d3.select('g').append("text")
+                .attr('class', 'val')
+                // the following line gets the x coordinate of bar,
+                // the width of the bar/2 to with a minor adjustment of -10
+                // to add text at the top and centre of the bar
+                .attr('x', function () {
+                    return x(i.group) + x.bandwidth() / 2 - 10;
+                })
+                // The following function returns the y coordinate of the bar 
+                // and places the text 15 units above it
+                .attr('y', function () { return y(i.value) - 5; })
+                // Value of the text }
+                .text(function (d) { return i.value; });
+        }
+        //mouseout event handler function
+        function onMouseOut(d, i) {
+            d3.selectAll('.val').remove()
+        }
         // Initialize the plot with the first dataset
         update(data1, 'one')
     </script>
