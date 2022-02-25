@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>P6E26</title>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+
+<body>
+    <script>
+        // Creating interpolator betwen 1st Jan 2022 and 25th Feb 2022
+        dateInt = d3.interpolateDate(new Date("2022-01-01"), new Date("2022-02-25"))
+        console.log(dateInt(0));
+        console.log(dateInt(0.5));
+        console.log(dateInt(1));
+    </script>
+</body>
+
+</html>
