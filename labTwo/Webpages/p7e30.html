@@ -13,11 +13,12 @@
     <script>
         var width = 400, height = 400;
         // setup svg 
-        d3.select('body').append('svg').attr('width', width).attr('height', height);
+        d3.select('body').append('svg').attr('width', width).attr('height', height).append('g');
         // generate some random data
         var nodes = [{ radius: 5 }, { radius: 10 }, { radius: 20 },
         { radius: 50 }, { radius: 18 }, { radius: 26 },
         { radius: 11 }, { radius: 90 }, { radius: 45 }]
+        // Get the number of data points
         var numNodes = nodes.length;
 
         var simulation = d3.forceSimulation(nodes)
@@ -31,14 +32,18 @@
             .on('tick', ticked);
 
         function ticked() {
+            // Create colour scale for circles
             const colorScale = d3.scaleSequential(d3.interpolateViridis)
                 .domain([0, numNodes])
 
-            var u = d3.select('svg')
+            // Select SVG and add Circles to it
+            d3.select('svg')
                 .selectAll('circle').data(nodes)
                 .join('circle')
+                // Add mouse over and out events
                 .on('mouseover', mouseOver)
-                //.on('mouseout', mouseOut)
+                .on('mouseout', mouseOut)
+                // Fill circl with one of the colorScale colours
                 .attr('fill', function (d, i) {
                     return colorScale(i);
                 })
@@ -52,17 +57,27 @@
                     return d.y
                 })
 
-            function mouseOver(d, i) {
-                d3.select('u')
-                    .append('text')
-                    .attr('x', i.x)
-                    .attr('y', i.y)
-                    .text(`Radius: ${i.radius}`)
-                    .attr('stroke', '#51c5cf')
-                    .attr('stroke-width', "2px");
-            }
         }
 
+        // Mouse over event function
+        function mouseOver(d, i) {
+            // On mouseover, select svg and append text to it
+            // get x and y coordinates from data point selection
+            d3.select('svg')
+                .append('text')
+                .attr('class', 'val')
+                .attr('x', i.x)
+                .attr('y', i.y)
+                .attr('text-anchor', 'middle')
+                // Add radius of circle as tooltip text
+                .text(`Radius: ${i.radius}`)
+        }
+
+        // Mouseout event function
+        function mouseOut(d, i) {
+            // Remove tooltip text on mouseout
+            d3.selectAll('.val').remove();
+        }
 
     </script>
 </body>
