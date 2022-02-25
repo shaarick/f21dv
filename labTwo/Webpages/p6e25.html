@@ -12,9 +12,18 @@
 <body>
     <script>
         let cc = d3.interpolate('red', 'green')
-        // rgb value red = 255, 0, 0
-        // rgb value green = 0, 255, 0
         console.log(cc(0.5));
+
+        // Calling the d3.rgb() function function
+        // with some parameters
+        var color1 = d3.rgb("red");
+        var color2 = d3.rgb("green");
+        var color3 = d3.rgb("blue");
+
+        // Getting the RGB values
+        console.log(color1);
+        console.log(color2);
+        console.log(color3);
     </script>
 </body>
 
