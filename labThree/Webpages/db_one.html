@@ -12,7 +12,9 @@ Purpose: Creating a Covid-19 Dashboard
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/db_one.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
     <title>Dashboard One</title>
 </head>
 
@@ -32,7 +34,19 @@ Purpose: Creating a Covid-19 Dashboard
         </div>
     </nav>
 
+    <div class="dashboardOne">
+        <div class="summaryBox">
+            <div class="cases">Total Cases</div>
+            <div class="deaths">Total Deaths</div>
+            <div class="vaccines">Total Vaccinations</div>
+            <div class="caseCount">0</div>
+            <div class="deathCounts">0</div>
+            <div class="vaccCounts">0</div>
+        </div>
+
+    </div>
     <script src="js/home.js"></script>
+    <script src="js/db_one.js"></script>
 </body>
 
 </html>
