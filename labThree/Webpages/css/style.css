@@ -18,6 +18,7 @@ nav {
     text-transform: uppercase;
     letter-spacing: 5px;
     font-size: 22px;
+    cursor: pointer;
 }
 
 .nav-links {
@@ -50,9 +51,29 @@ nav {
     display: none;
 }
 
+@media screen and (max-width: 2550px) {
+    body {
+        overflow-x: hidden;
+        overflow-y: hidden;
+        align-items: center;
+    }
+    .nav-links {
+        width: 20%;
+    }
+
+    section {
+        padding-left: 10%;
+        padding-bottom: 30%;
+    }
+}
+
 @media screen and (max-width: 2048px) {
     .nav-links {
         width: 30%;
+    }
+
+    section{
+        padding-left: 0px;
     }
 }
 
@@ -60,6 +81,8 @@ nav {
     .nav-links {
         width: 50%;
     }
+
+
 }
 
 @media screen and (max-width: 768px) {
@@ -88,6 +111,33 @@ nav {
         display: block;
         cursor: pointer;
     }
+
+    .presentation h1 {
+        width: 92%;
+        padding-bottom: 20px;
+    }
+
+    .introduction {
+        width: 45%;
+    } 
+}
+
+@media screen and (max-width: 747px) {
+
+    .presentation {
+        width: 100%;
+        align-items: center;
+    }
+    .presentation h1 {
+        width: 70%;
+        padding-left: 25%;
+        align-items: center;
+        padding-bottom: 20px;
+    }
+
+    .introduction {
+        width: 45%;
+    } 
 }
 
 .nav-active{
@@ -115,4 +165,49 @@ nav {
 
 .toggle .line3{
     transform: rotate(45deg) translate(-5px, -6px);
+}
+
+
+body{
+    background-color: #EDE3E4;
+}
+
+section {
+    height: 100%;
+}
+.presentation{
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    width: 90%;
+    min-height: 30vh;
+    align-items: center;
+    margin: 25%;
+    font-weight: 500;
+}
+
+.presentation h1 {
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 36px;
+}
+
+.presentation p{
+    letter-spacing: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+.view{
+    font-size: 15px;
+    /* padding: 0px 0px 0px 10px; */
+    margin-top: 20px;
+    /* margin-left: 10px; */
+    /* border: 2px solid #A9B2AC; */
+    border: 2px solid #645a5e;
+    background: transparent;
+    background-color: #AF9FA5;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
 }
