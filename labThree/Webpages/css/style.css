@@ -54,7 +54,7 @@ nav {
 @media screen and (max-width: 2550px) {
     body {
         overflow-x: hidden;
-        overflow-y: hidden;
+        /* overflow-y: hidden; */
         align-items: center;
     }
     .nav-links {

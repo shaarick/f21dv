@@ -10,7 +10,6 @@
   grid-template-columns: repeat(3, 1fr);
   letter-spacing: 2px;
   font-weight: bold;
-
 }
 
 .summaryBox div {
@@ -21,4 +20,43 @@
   align-items: center;
   border: 1px solid black;
   /* border-left: 1px solid black; */
+}
+
+
+svg{
+  /* min-width: 100%;
+  min-height: 500px; */
+  /* background-color: white; */
+} 
+
+.scatter{
+  width: 100%;
+  height: 600px;
+  display: flex;
+  padding-top: 10px;
+  justify-content: center;
+}
+
+.charts {
+  width: 100%;
+  height: 400px;
+  display: flex;
+}
+
+.countrybar {
+  width: 50%;
+  margin-left: 25%;
+}
+
+.continentbar {
+  width: 50%
+}
+
+.bubbles {
+  stroke-width: 1px;
+  stroke: black;
+  opacity: .8
+}
+.bubbles:hover {
+  stroke: black;
 }

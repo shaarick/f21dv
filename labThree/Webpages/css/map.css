@@ -1,0 +1,14 @@
+.country {
+    fill: #5D4954;
+    stroke: rgb(185, 177, 177)
+}
+
+.hover {
+    fill: #aa8398;
+}
+
+.selected {
+    /* fill: #b16cb1; */
+    fill: #945d94;
+    stroke-width: 2px;
+}
